@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 33% 95%;
+    --foreground: 345 40% 15%;
+
+    --card: 35 30% 93%;
+    --card-foreground: 345 40% 15%;
+
+    --popover: 35 33% 95%;
+    --popover-foreground: 345 40% 15%;
+
+    --primary: 345 65% 28%;
+    --primary-foreground: 35 30% 95%;
+
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 345 65% 28%;
+
+    --muted: 35 20% 90%;
+    --muted-foreground: 345 15% 45%;
+
+    --accent: 43 60% 65%;
+    --accent-foreground: 345 65% 28%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 345 30% 80%;
+    --input: 345 30% 80%;
+    --ring: 345 65% 28%;
+
+    --radius: 0.5rem;
+
+    /* Custom wedding tokens */
+    --gold: 43 70% 52%;
+    --gold-light: 43 60% 75%;
+    --gold-text: 43 50% 45%;
+    --maroon: 345 65% 28%;
+    --maroon-dark: 345 70% 20%;
+    --maroon-light: 345 40% 40%;
+    --cream: 35 33% 95%;
+    --cream-dark: 35 25% 88%;
+    --pink-flower: 340 70% 65%;
+    --venue-bg: 345 55% 22%;
+  }
+
+  .dark {
+    --background: 345 30% 8%;
+    --foreground: 35 30% 92%;
+    --card: 345 30% 12%;
+    --card-foreground: 35 30% 92%;
+    --primary: 43 60% 65%;
+    --primary-foreground: 345 30% 8%;
+    --secondary: 345 30% 15%;
+    --secondary-foreground: 35 30% 92%;
+    --muted: 345 20% 15%;
+    --muted-foreground: 35 15% 60%;
+    --accent: 43 50% 50%;
+    --accent-foreground: 345 30% 8%;
+    --border: 345 20% 20%;
+    --input: 345 20% 20%;
+    --ring: 43 60% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lora', serif;
+  }
+}
+
+@layer components {
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .text-gold {
+    color: hsl(var(--gold-text));
+  }
+
+  .text-gold-light {
+    color: hsl(var(--gold-light));
+  }
+
+  .bg-maroon {
+    background-color: hsl(var(--maroon));
+  }
+
+  .bg-maroon-dark {
+    background-color: hsl(var(--maroon-dark));
+  }
+
+  .bg-venue {
+    background-color: hsl(var(--venue-bg));
+  }
+
+  .text-maroon {
+    color: hsl(var(--maroon));
+  }
+
+  .text-maroon-light {
+    color: hsl(var(--maroon-light));
+  }
+
+  .border-maroon {
+    border-color: hsl(var(--maroon));
+  }
+
+  .bg-cream-dark {
+    background-color: hsl(var(--cream-dark));
+  }
+
+  .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  .ornament-card {
+  background: linear-gradient(135deg, #fffdf8 0%, #fdf5e8 50%, #faf0e0 100%);
+  border: 1.5px solid rgba(123, 28, 53, 0.25);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  }
+
+  .ornament-card::before,
+  .ornament-card::after {
+    position: absolute;
+    color: hsl(var(--maroon-light));
+    font-size: 1.5rem;
+    opacity: 0.4;
+  }
+
+  .ornament-card::before {
+ content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(123, 28, 53, 0.15);
+  border-radius: 1px;
+  pointer-events: none;  }
+
+  .ornament-card::after {
+    bottom: 0.5rem;
+    right: 0.75rem;
+  }
+
+  .divider {
+    @apply flex items-center justify-center gap-3 my-6;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    height: 1px;
+    width: 100px;
+    background: hsl(var(--maroon) / 0.4);
+  }
+}
+
+@layer utilities {
+  @keyframes petal-fall {
+    0% {
+      transform: translateY(-10vh) rotate(0deg) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(110vh) rotate(720deg) translateX(40px);
+      opacity: 0;
+    }
+  }
+
+  .petal {
+    position: absolute;
+    top: -30px;
+    opacity: 0;
+    pointer-events: none;
+    animation: petal-fall linear infinite;
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .animate-sparkle {
+    animation: sparkle 5s ease-in-out infinite;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.1s ease-out;
+  }
+}
